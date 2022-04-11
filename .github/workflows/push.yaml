@@ -1,4 +1,4 @@
-name: development-environment
+name: deploy 
 on: push
 #on:  
 #  push:
