@@ -1,9 +1,10 @@
-on: workflow_dispatch
 name: deploy 
+on: push
 jobs:
   deploy:
     name: deploy to cluster
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    if: ${{ github.ref != 'refs/heads/main' &&  github.event_name == 'push' || github.event_name == 'merge' }}
     steps:
     - uses: actions/checkout@main
     - name: build and push to docker
