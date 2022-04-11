@@ -1,13 +1,14 @@
 name: deploy 
-on:  
-  push:
-    tags:
-      - '*'
+on: push
+#on:  
+#  push:
+#    tags:
+#      - '*'
 jobs:
   deploy:
     name: deploy to cluster
     runs-on: ubuntu-latest
-    #if: ${{ github.ref ==  'refs/tags/*' }}
+    if: startsWith(github.event.ref, 'refs/tags/*')
     #Rule to only run pipeline according to the branch
     #if: ${{ github.ref != 'refs/heads/main' && github.event_name == 'push' || github.event_name == 'merge' }}
     steps:
