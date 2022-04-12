@@ -1,12 +1,9 @@
-name: development-environment
-on:  
-  push:
-    tags:
-      - '*'
-  workflow_dispatch:
-
+name: prod-environment
+on:  [create, push, workflow_dispatch]
+ 
 jobs:
   deploy:
+    if: ${{ startsWith(github.ref, 'refs/tags/*') }}
     name: deploy to cluster
     runs-on: ubuntu-latest  
     steps:
