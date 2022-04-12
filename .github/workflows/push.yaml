@@ -1,5 +1,5 @@
 name: prod-environment
-on:  [create, push, workflow_dispatch]
+on:  [create, workflow_dispatch]
  
 jobs:
   deploy:
