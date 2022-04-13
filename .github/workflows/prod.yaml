@@ -1,10 +1,12 @@
 name: prod-environment
 on:  
+  create:
   push:
     tags:
       - '*'
 jobs:
   deploy:
+    if: ${{ startsWith(github.ref, 'refs/tags/*') }}
     name: deploy to cluster
     runs-on: ubuntu-latest    
     steps:
