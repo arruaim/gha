@@ -1,6 +1,6 @@
 name: prod-environment
 on:  
-  create:
+  push:
     tags:
       - '*'
 jobs:
