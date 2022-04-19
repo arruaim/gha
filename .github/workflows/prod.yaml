@@ -3,14 +3,17 @@ on:
   push:
     tags:
       - '*'
+env:
+  TAG: ${GITHUB_REF#refs/*/}
+
 jobs:
   deploy:
     name: deploy to cluster
     runs-on: ubuntu-latest    
     steps:
     - name: show TAG
-      run:  echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-    
+      run: echo "The TAG is:${{env.TAG}}" 
+        
     - uses: actions/checkout@main
     - name: build and push to docker
       uses: docker/build-push-action@v1
@@ -21,5 +24,3 @@ jobs:
         tag_with_ref: true
         tag_with_sha: true
         tags: ${{ github.sha }}
-      
-
