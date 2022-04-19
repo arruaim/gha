@@ -3,8 +3,6 @@ on:
   push:
     tags:
       - '*'
-env:
-  TAG: ${GITHUB_REF#refs/*/}
 
 jobs:
   deploy:
@@ -12,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
     - name: show TAG
-      run: |
-        echo  "The TAG is:${{env.TAG}}"
+      run:  echo ::set-output name=tag::${GITHUB_REF#refs/*/}
     
     - uses: actions/checkout@main
     - name: build and push to docker
