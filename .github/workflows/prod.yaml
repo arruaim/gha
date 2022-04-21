@@ -3,9 +3,6 @@ on:
   push:
     tags:
       - '*'
-env:
-  TAG: ${GITHUB_REF#refs/tags/} 
-  
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -35,9 +32,13 @@ jobs:
          echo "Este es el TAG ${{env.TAG}}"
          
          echo TAG=${{env.TAG}} >> .env  
+         
+         echo ---Contenido de .env---
+         cat .env
 
       - name: Compose
-      
+        env:
+         TAG: ${GITHUB_REF#refs/tags/}
         run: |     
          echo ---Building and starting up docker---
          docker-compose -p client up -d
