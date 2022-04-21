@@ -12,12 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v1
-        with:
-          images: client/app
-      
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -37,5 +31,6 @@ jobs:
           TAG: ${{ steps.meta.outputs.tags }}
         run: | 
          echo ---Building and starting up docker---
-         docker-compose -e ${{env.TAG}} -p client up -d
+         docker-compose run -e ${{env.TAG}}
+         docker-compose -p client up -d
          echo ---Containers up---      
