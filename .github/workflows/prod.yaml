@@ -37,8 +37,6 @@ jobs:
          cat .env
 
       - name: Compose
-        env:
-         TAG: ${GITHUB_REF#refs/tags/}
         run: |     
          echo ---Building and starting up docker---
          docker-compose -p client up -d
