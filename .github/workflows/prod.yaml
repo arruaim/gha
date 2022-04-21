@@ -26,7 +26,8 @@ jobs:
 
       - name: Export tags
         uses: little-core-labs/get-git-tag@v3.0.1
-      
+        id: tagName
+        
       - name: Output tag
         with:
           tagname: ${{ steps.tagName.outputs.tag }}
