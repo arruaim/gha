@@ -2,8 +2,6 @@ version: "3"
 
 services:
     client:
-      environment:
-              - TAG
       image: nginx:${TAG}
       ports:
         - 8000:80

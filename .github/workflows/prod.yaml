@@ -30,8 +30,8 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Build docker
+      - name: Build docker 
         run: | 
          echo ---Building and starting up docker---
-         docker-compose  -p client up -d
+         docker-compose  -p client:${{ steps.meta.outputs.tags }} up -d
          echo ---Containers up---      
