@@ -2,7 +2,7 @@ version: "3"
 
 services:
     client:
-      image: nginx
+      image: nginx:${TAG}
       ports:
         - 8000:80
       volumes:
