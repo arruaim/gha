@@ -3,17 +3,17 @@ on:
   push:
     tags:
       - '*'
-env:
-  TAG: ${GITHUB_REF#refs/*/}
-
 jobs:
   deploy:
     name: deploy to cluster
     runs-on: ubuntu-latest    
-    steps:
-    - name: show TAG
-      run: echo "The TAG is:${{env.TAG}}"      
-    - uses: actions/checkout@main
+    steps:    
+    - uses: actions/checkout@v2
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+      with:
+          images: xx/xx
     - name: build and push to docker
       uses: docker/build-push-action@v1
       with:
@@ -21,5 +21,11 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ github.repository }}
         tag_with_ref: true
-        tag_with_sha: true
-        tags: ${{ github.sha }}
+        tags: server.${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+    - name: Clean Up
+      run: |
+        docker image prune --force 
+
+
+        
