@@ -4,6 +4,8 @@ on:
     tags:
       - '*'
 
+env:
+  TAG: ${GITHUB_REF#refs/*/}
 
 jobs:
   docker:
@@ -23,14 +25,15 @@ jobs:
         with:
           context: .
           load: true
-          tags: ${{ steps.meta.outputs.tags }}
+          #tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{env.TAG}}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Build docker
         run: |
          touch .env
-         echo TAG=${{ steps.meta.outputs.tags }} >> .env  
-         pwd .env
+         echo TAG=${{env.TAG}} >> .env  
+         sudo pwd .env
            
          echo ---Building and starting up docker---
          docker-compose -p client up -d
