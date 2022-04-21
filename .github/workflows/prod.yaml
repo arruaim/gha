@@ -27,7 +27,7 @@ jobs:
 
       - name: Build docker
         env:
-         TAG: ${GITHUB_REF#refs/*/}
+         TAG: ${GITHUB_REF#refs/tags/}
         run: |
          touch .env
          echo "${{env.TAG}}"
@@ -38,4 +38,3 @@ jobs:
          echo ---Building and starting up docker---
          docker-compose -p client up -d
          echo ---Containers up---
-
