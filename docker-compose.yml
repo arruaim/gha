@@ -2,7 +2,7 @@ version: "3"
 
 services:
     client:
-      image: "nginx:${TAG}"
+      image: "nginx"
       env_file:
         - .env 
       ports:

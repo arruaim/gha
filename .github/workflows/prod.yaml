@@ -25,14 +25,13 @@ jobs:
           load: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Build docker
-        env:
-          TAG: ${{ steps.meta.outputs.tags }}
         run: |
          touch .env
-         echo TAG=${{env.TAG}} >> .env  
-         
+         echo TAG=${{ steps.meta.outputs.tags }} >> .env  
+         pwd .env  
+
+      - name: Build docker
+        run: |
          echo ---Building and starting up docker---
          docker-compose -p client up -d
          echo ---Containers up---
