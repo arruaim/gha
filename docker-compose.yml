@@ -2,7 +2,7 @@ version: "3"
 
 services:
     client:
-      image: "client"
+      image: "nginx"
       env_file:
         - .env 
       ports:
