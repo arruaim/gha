@@ -31,6 +31,8 @@ jobs:
           TAG: ${{ steps.meta.outputs.tags }}
         run: | 
          echo ---Building and starting up docker---
-         docker-compose run -e ${{env.TAG}}
          docker-compose -p client up -d
-         echo ---Containers up---      
+         echo ---Containers up---
+
+         touch .env
+         echo TAG=${{env.TAG}} >> .env
