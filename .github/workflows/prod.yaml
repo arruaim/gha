@@ -36,6 +36,5 @@ jobs:
          sudo pwd .env
            
          echo ---Building and starting up docker---
-         docker export -o .env 
          docker-compose -p client up -d
          echo ---Containers up---
