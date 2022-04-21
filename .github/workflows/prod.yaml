@@ -27,11 +27,12 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          load: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Build docker 
         run: | 
          echo ---Building and starting up docker---
-         docker-compose  -p client:${{ steps.meta.outputs.tags }} up -d
+         docker-compose  -p client up -d
          echo ---Containers up---      
