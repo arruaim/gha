@@ -31,7 +31,7 @@ jobs:
          touch .env
          echo "Este es el TAG ${{env.TAG}}"
          
-         echo TAG:${{env.TAG}} >> .env  
+         echo ${{env.TAG}} >> .env  
          
          echo ---Contenido de .env---
          cat .env
