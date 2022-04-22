@@ -25,12 +25,16 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Export tags
-        uses: little-core-labs/get-git-tag@v3.0.1
-        id: tagName
-        
-      - name: Output tag
-        with:
-          tagname: ${{ steps.tagName.outputs.tag }}
+        env:
+         TAG: ${GITHUB_REF#refs/tags/}
+        run: |
+         touch .env
+         echo "Este es el TAG ${{env.TAG}}"
+         
+         echo TAG:${{env.TAG}} >> .env  
+         
+         echo ---Contenido de .env---
+         cat .env
 
       - name: Compose
         run: |     
