@@ -25,14 +25,20 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Build docker
-        env:
-         TAG: ${GITHUB_REF#refs/*/}
+      - name: Compose
+        uses: actions/checkout@main        
         run: |
-         touch .env
-         echo "${{env.TAG}}"
          
-         echo "TAG=${GITHUB_REF#refs/*/}}" >> .env  
+         echo ::set-env name=TAG::$(echo ${GITHUB_REF:10})
+
+
+         touch .env
+
+
+
+         echo "$TAG"
+         
+         echo "TAG=$TAG" >> .env  
          
          cat .env  
          echo ---Building and starting up docker---
