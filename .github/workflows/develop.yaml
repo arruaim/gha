@@ -1,5 +1,5 @@
 name: dev-environment
-on:  [push, workflow_dispatch]
+on:  [workflow_dispatch]
 jobs:
   deploy:
     if: ${{ github.ref != 'refs/heads/main' && github.event_name == 'push' || github.event_name == 'merge' }}
