@@ -27,16 +27,12 @@ jobs:
 
       - name: Compose     
         run: |
-         
-         echo ::set-env name=TAG::$(echo ${GITHUB_REF:10})
-
-
+    
          touch .env
+     
+         echo "TAG=$(echo ${GITHUB_REF:10})" >> .env  
 
-         echo "$TAG"
-         
-         echo "TAG=$TAG" >> .env  
-         
+         echo ---Contenido .env---
          cat .env  
          echo ---Building and starting up docker---
          docker-compose -p client up -d
