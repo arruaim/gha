@@ -25,16 +25,13 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Compose
-        uses: actions/checkout@main        
+      - name: Compose     
         run: |
          
          echo ::set-env name=TAG::$(echo ${GITHUB_REF:10})
 
 
          touch .env
-
-
 
          echo "$TAG"
          
