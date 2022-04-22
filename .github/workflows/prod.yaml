@@ -26,7 +26,7 @@ jobs:
 
       - name: Compose
         env:
-          TAG: ${GITHUB_REF#refs/tags/}
+          TAG: ${GITHUB_REF#refs/*/}
         
         run: |
          touch .env
