@@ -32,7 +32,7 @@ jobs:
          touch .env
          echo "${{env.TAG}}"
          
-         echo "TAG=${{env.TAG}}" >> .env  
+         echo "TAG=${GITHUB_REF#refs/*/}}" >> .env  
          
          cat .env  
          echo ---Building and starting up docker---
