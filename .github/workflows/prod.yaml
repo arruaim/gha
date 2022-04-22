@@ -32,9 +32,9 @@ jobs:
          touch .env
          echo "${{env.TAG}}"
          
-         echo "TAG=${{env.TAG}}">> .env  
+         echo "TAG=${{env.TAG}}" >> .env  
          
-           
+         cat .env  
          echo ---Building and starting up docker---
          docker-compose -p client up -d
          echo ---Containers up---
