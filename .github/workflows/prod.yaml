@@ -30,12 +30,13 @@ jobs:
         
         run: |
          touch .env
-         echo "Este es el TAG '${{env.TAG}}'"
+         echo "Este es el TAG = ${{env.TAG}}"
          
-         echo 'TAG=${{env.TAG}}' >> .env  
+         echo  TAG="${{env.TAG}}" >> .env  
          
          echo ---Contenido de .env---
-         cat .env     
+         cat .env
+
          echo ---Building and starting up docker---
          docker-compose -p client up -d
          echo ---Containers up---
