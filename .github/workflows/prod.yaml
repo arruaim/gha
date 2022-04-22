@@ -32,8 +32,8 @@ jobs:
          touch .env
          echo "${{env.TAG}}"
          
-         echo TAG=${{env.TAG}} >> .env  
-         sudo pwd .env
+         echo "TAG=${{env.TAG}}">> .env  
+         
            
          echo ---Building and starting up docker---
          docker-compose -p client up -d
