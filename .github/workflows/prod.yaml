@@ -24,9 +24,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Export tags
-        env:
-         TAG: ${GITHUB_REF#refs/tags/}
+      - name: Compose
         run: |
          touch .env
          echo "Este es el TAG ${{env.TAG}}"
@@ -34,10 +32,7 @@ jobs:
          echo TAG:${{env.TAG}} >> .env  
          
          echo ---Contenido de .env---
-         cat .env
-
-      - name: Compose
-        run: |     
+         cat .env     
          echo ---Building and starting up docker---
          docker-compose -p client up -d
          echo ---Containers up---
