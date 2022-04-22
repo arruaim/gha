@@ -26,10 +26,11 @@ jobs:
 
       - name: Compose
         env:
-         TAG: ${GITHUB_REF#refs/*/}
+          TAG: ${GITHUB_REF#refs/*/}
         
         run: |
          touch .env
+         echo ---Cargo contenido a .env---
          echo "TAG=${{env.TAG}}" >> .env 
          
          echo ---Contenido de .env---
